@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_063942) do
+ActiveRecord::Schema.define(version: 2020_12_13_072759) do
+
+  create_table "boards", force: :cascade do |t|
+    t.boolean "clear"
+    t.integer "rotation"
+    t.integer "player_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["player_id"], name: "index_boards_on_player_id"
+  end
 
   create_table "games", force: :cascade do |t|
     t.integer "state"
@@ -26,5 +35,6 @@ ActiveRecord::Schema.define(version: 2020_12_13_063942) do
     t.index ["game_id"], name: "index_players_on_game_id"
   end
 
+  add_foreign_key "boards", "players"
   add_foreign_key "players", "games"
 end
