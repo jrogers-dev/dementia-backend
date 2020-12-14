@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_072759) do
+ActiveRecord::Schema.define(version: 2020_12_14_003620) do
 
   create_table "boards", force: :cascade do |t|
     t.boolean "clear"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 2020_12_13_072759) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["player_id"], name: "index_boards_on_player_id"
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.integer "position_id", null: false
+    t.integer "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["position_id"], name: "index_cards_on_position_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -35,6 +43,15 @@ ActiveRecord::Schema.define(version: 2020_12_13_072759) do
     t.index ["game_id"], name: "index_players_on_game_id"
   end
 
+  create_table "positions", force: :cascade do |t|
+    t.integer "board_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["board_id"], name: "index_positions_on_board_id"
+  end
+
   add_foreign_key "boards", "players"
+  add_foreign_key "cards", "positions"
   add_foreign_key "players", "games"
+  add_foreign_key "positions", "boards"
 end
