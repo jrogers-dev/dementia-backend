@@ -24,3 +24,17 @@ Board.create(clear: false, rotation: 180, player_id: 3)
 Board.create(clear: false, rotation: 0, player_id: 4)
 Board.create(clear: false, rotation: 90, player_id: 5)
 Board.create(clear: false, rotation: 180, player_id: 6)
+
+Position.create(board_id: 1)
+Position.create(board_id: 1)
+Position.create(board_id: 1)
+Position.create(board_id: 1)
+Position.create(board_id: 1)
+
+Card.create(position_id: 1, value: 1)
+Card.create(position_id: 2, value: 2)
+Card.create(position_id: 3, value: 3)
+Card.create(position_id: 4, value: 4)
+Card.create(position_id: 5, value: 5)
+
+
