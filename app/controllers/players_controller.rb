@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
     def index
-        players = Player.all
-        render json: players
+        players = Player.where("game_id = ?", params[:game_id])
+        render json: players, only: [:id, :name]
     end
 
     def create
@@ -10,7 +10,11 @@ class PlayersController < ApplicationController
 
     def show
         player = Player.find(params[:id])
-        render json: player
+        if (player.game_id.to_s == params[:game_id])
+            render json: player, only: [:id, :name, :game_id]
+        else
+            redirect_to action: "index", game_id: params[:game_id]
+        end
     end
 
     def update

@@ -5,7 +5,8 @@ class GamesController < ApplicationController
     end
 
     def create
-
+        game = Game.create(state: :created)
+        render json: game
     end
 
     def show
@@ -18,6 +19,16 @@ class GamesController < ApplicationController
     end
 
     def destroy
+
+    end
+
+    private
+
+    def set_game
+
+    end
+
+    def game_params
 
     end
 end

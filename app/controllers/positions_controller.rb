@@ -1,6 +1,6 @@
 class PositionsController < ApplicationController
     def index
-        positions = Position.all
+        positions = Position.where("board_id = ?", params[:board_id])
         render json: positions
     end
 
@@ -10,7 +10,11 @@ class PositionsController < ApplicationController
 
     def show
         position = Position.find(params[:id])
-        render json: position
+        if (position.board_id.to_s == params[:board_id])
+            render json: position
+        else
+            redirect_to action: "index", board_id: params[:board_id]
+        end
     end
 
     def update

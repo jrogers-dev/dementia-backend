@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :cards
-  resources :positions
-  resources :boards
-  resources :players
-  resources :games
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :games do
+    resources :players do
+      resources :cards
+      resources :boards do
+        resources :positions
+      end
+    end
+  end
 end
