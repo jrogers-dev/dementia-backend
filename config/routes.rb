@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   resources :games do
     resources :players do
-      resources :cards
       resources :boards do
-        resources :positions
+        resources :positions do
+          resources :cards
+        end
       end
     end
   end
