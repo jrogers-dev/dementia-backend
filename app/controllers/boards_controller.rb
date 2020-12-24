@@ -1,7 +1,7 @@
 class BoardsController < ApplicationController
     def index
         boards = Board.where("player_id = ?", params[:player_id])
-        render json: boards
+        render json: BoardSerializer.new(boards).serializable_hash
     end
 
     def create

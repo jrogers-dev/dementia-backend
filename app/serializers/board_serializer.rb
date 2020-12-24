@@ -1,4 +1,4 @@
 class BoardSerializer
   include JSONAPI::Serializer
-  attributes :id, :clear, :rotation, :player_id
+  attributes :clear, :rotation, :player_id
 end

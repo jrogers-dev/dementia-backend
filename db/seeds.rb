@@ -7,34 +7,31 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Game.create(state: :created)
-Game.create(state: :setup)
-Game.create(state: :active)
-Game.create(state: :complete)
 
 Player.create(name: "Steve", game_id: 1)
 Player.create(name: "Boo", game_id: 1)
-Player.create(name: "Shemmy", game_id: 1)
-Player.create(name: "Spongegar", game_id: 2)
-Player.create(name: "Patar", game_id: 2)
-Player.create(name: "Fweefwee", game_id: 2)
 
 Board.create(clear: false, rotation: 0, player_id: 1)
 Board.create(clear: false, rotation: 90, player_id: 2)
-Board.create(clear: false, rotation: 180, player_id: 3)
-Board.create(clear: false, rotation: 0, player_id: 4)
-Board.create(clear: false, rotation: 90, player_id: 5)
-Board.create(clear: false, rotation: 180, player_id: 6)
 
-Position.create(board_id: 1)
-Position.create(board_id: 1)
-Position.create(board_id: 1)
-Position.create(board_id: 1)
-Position.create(board_id: 1)
+for i in 1..2 do
+    for j in 1..20 do
+        pos = Position.create(board_id: i)
+        Card.create(position_id: pos.id, value: j)
+    end
+end
 
-Card.create(position_id: 1, value: 1)
-Card.create(position_id: 2, value: 2)
-Card.create(position_id: 3, value: 3)
-Card.create(position_id: 4, value: 4)
-Card.create(position_id: 5, value: 5)
+Game.create(state: :setup)
 
+Player.create(name: "Spongegar", game_id: 2)
+Player.create(name: "Patar", game_id: 2)
 
+Board.create(clear: false, rotation: 0, player_id: 3)
+Board.create(clear: false, rotation: 90, player_id: 4)
+
+for k in 3..4 do
+    for l in 1..20 do
+        pos = Position.create(board_id: k)
+        Card.create(position_id: pos.id, value: l)
+    end
+end

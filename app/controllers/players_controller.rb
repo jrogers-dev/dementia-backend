@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
     def index
         players = Player.where("game_id = ?", params[:game_id])
-        render json: players, only: [:id, :name]
+        render json: PlayerSerializer.new(players).serializable_hash
     end
 
     def create

@@ -1,7 +1,8 @@
 class GamesController < ApplicationController
     def index
         games = Game.all
-        render json: games
+        render json: GameSerializer.new(games).serializable_hash
+
     end
 
     def create

@@ -1,4 +1,4 @@
 class PositionSerializer
   include JSONAPI::Serializer
-  attributes :id, :board_id
+  attributes :board_id
 end

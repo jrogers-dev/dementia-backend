@@ -1,7 +1,7 @@
 class PositionsController < ApplicationController
     def index
         positions = Position.where("board_id = ?", params[:board_id])
-        render json: positions
+        render json: PositionSerializer.new(positions).serializable_hash
     end
 
     def create
