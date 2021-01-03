@@ -5,7 +5,7 @@ class GamesController < ApplicationController
     end
 
     def create
-        game = Game.create(state: :created)
+        game = Game.create(game_params)
         render json: GameSerializer.new(game).serializable_hash
     end
 
@@ -15,7 +15,9 @@ class GamesController < ApplicationController
     end
 
     def update
-
+        game = Game.find(params[:id])
+        game.update(game_params)
+        render json: GameSerializer.new(game).serializable_hash
     end
 
     def destroy
@@ -24,11 +26,7 @@ class GamesController < ApplicationController
 
     private
 
-    def set_game
-
-    end
-
     def game_params
-
+        params.require(:game).permit(:state)
     end
 end
